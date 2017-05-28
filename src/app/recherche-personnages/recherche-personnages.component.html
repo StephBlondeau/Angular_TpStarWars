@@ -1,0 +1,27 @@
+<barre-header></barre-header>
+<p><input [ngClass]="{error: error !== ''}" type="text" [(ngModel)]="recherche" (keyup.Backspace) = "rechercher()"/>
+<button (click)="rechercher()">Rechercher</button></p>
+<barre-erreur [message]="error" *ngIf="error !== ''"></barre-erreur>
+<table>
+  <tbody>
+    <tr *ngFor="let item of listePersonnages">
+      <td><h2>{{item.name}}</h2></td>
+      <td><h2>{{item.birth_year}}</h2></td>
+      <td>{{item.gender}}</td>
+      <td><a [routerLink] = "['/details', item.url]">Voir les détails</a></td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="listePersonnages.length === 0 && isRechercheOnce">Aucun film n'a été trouvé</p>
+<p><barre-pages [urlPage]="urlPage" [(page)]="pageCourante" [total]="pages" (pageChanged)="changerPage($event)"></barre-pages></p>
+
+
+
+<!-- <table>
+  <tr *ngFor="let item of listePersonnages">
+    <td><h2>{{item.name}}</h2></td>
+    <td><h2>{{item.birth_year}}</h2></td>
+    <td>{{item.gender}}</td>
+    <td><a [routerLink] = "['/details', item.url]">Voir les détails</a></td>
+  </tr>
+</table> -->
